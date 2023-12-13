@@ -26,5 +26,6 @@ fi
 
 cd ..
 rm -rf Python-$1
+rm Python-$1.tgz
 
 popd
