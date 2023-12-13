@@ -9,7 +9,7 @@ cd Python-$1
 
 echo "Installing Python $1"
 
-./configure --without-ensurepip
+./configure --enable-optimizations --with-lto --without-ensurepip
 
 make -j 8
 if [ $? -ne 0 ]; then
