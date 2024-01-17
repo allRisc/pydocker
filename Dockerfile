@@ -18,14 +18,16 @@ ENV DEBIAN_FRONTEND noninteractive
 # ensure local python is preferred over distribution python
 ENV PATH /usr/local/bin:$PATH
 
-# Install Python versions from source
+# Install Necessary Dependencies
 RUN apt-get install -y make build-essential libssl-dev zlib1g-dev
-RUN apt-get install -y libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm
+RUN apt-get install -y libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm liblzma-dev
 RUN apt-get install -y libncurses5-dev libncursesw5-dev xz-utils tk-dev
 
-COPY ./install_python.sh .
+# Install Python
+COPY ./Makefile .
+COPY install_python.sh .
 RUN chmod +x install_python.sh
-RUN ./install_python.sh 3.7.17  altinstall
+RUN ls -la && ./install_python.sh 3.7.17  altinstall
 RUN ./install_python.sh 3.8.17  altinstall
 RUN ./install_python.sh 3.9.18  altinstall
 RUN ./install_python.sh 3.10.13 altinstall
